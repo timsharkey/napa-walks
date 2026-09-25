@@ -1,25 +1,29 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="Heritage Walk" description="Downtown Napa's history and architecture, guided.">
-  <section class="section">
-    <div class="container">
+<Layout title="Heritage Walk" description="A downtown Napa history walk. Route and pricing coming soon.">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">History</div>
       <h1>Heritage Walk</h1>
-      <p class="price-tag">Price: TBD</p>
-      <div class="placeholder-note">
-        Placeholder copy and price. Replace with real duration, meeting point, group size, and pricing.
+      <p class="lead">The stories behind downtown Napa's storefronts — architecture, founders, and the buildings that survived.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="tbd-note">
+        <span class="mono">ROUTE IN PROGRESS</span>
+        Stops, pricing, and duration for Heritage Walk haven't been finalized yet. This page is live so the link works from the tours list and booking form — full route details go here once they're locked.
       </div>
-      <p>
-        A guided walk through downtown Napa's history: the buildings, the people, and the stories behind
-        the city's evolution from a river town to a wine-tourism destination.
-      </p>
-      <h2>What's Included</h2>
-      <ul>
-        <li>Local guide</li>
-        <li>~90 minute walking route</li>
-        <li>Stops at key historic sites</li>
-      </ul>
-      <a href="/book" class="btn">Book This Walk</a>
+      <div class="cta-block cta-single">
+        <div>
+          <div class="eyebrow">Want to be first in line?</div>
+          <h2>Get notified when it's live</h2>
+          <p style="max-width:480px;">Leave your info on the booking form and mention Heritage Walk — we'll reach out the moment dates open up.</p>
+          <a href="/#book" class="btn-primary" style="background:var(--stamp); border-color:var(--stamp);">JOIN THE LIST</a>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

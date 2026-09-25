@@ -1,24 +1,86 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="Hops & Bites" description="Craft beer and local eats, downtown Napa style.">
-  <section class="section">
-    <div class="container">
-      <h1>Hops &amp; Bites</h1>
-      <p class="price-tag">Price: TBD</p>
-      <div class="placeholder-note">
-        Placeholder copy and price. Replace with real venues, pour counts, duration, and pricing.
+<Layout title="Hops & Bites" description="A 2-hour downtown Napa beer walk: Downtown Joe's, Palisades, Ristorante Allegria & The Garden. $75/guest.">
+  <section class="page-hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Beer + Eats</div>
+        <h1>Hops &amp; Bites</h1>
+        <p class="lead">Downtown taprooms and brewpubs, paired with bites from the same four kitchens as Sip &amp; Nibble.</p>
+        <div class="hero-actions" style="margin-top:28px;">
+          <a href="/#book" class="btn-primary">RESERVE THIS WALK</a>
+          <a href="/tours" class="btn-ghost">SEE ALL TOURS</a>
+        </div>
       </div>
-      <p>
-        A guided walk through downtown Napa's craft beer scene, paired with local eats along the way.
-      </p>
-      <h2>What's Included</h2>
-      <ul>
-        <li>Local guide</li>
-        <li>Craft beer pours at multiple stops</li>
-        <li>Paired local bites</li>
-      </ul>
-      <a href="/book" class="btn">Book This Walk</a>
+      <div class="route-card">
+        <div class="route-label">Route — Hops &amp; Bites</div>
+        <div class="route-stop"><div class="route-num">1</div><div class="route-stop-text"><div class="t">Downtown Joe's</div><div class="d">House-brewed flight + bite</div></div></div>
+        <div class="route-stop"><div class="route-num">2</div><div class="route-stop-text"><div class="t">Palisades</div><div class="d">Local tap pour + bite</div></div></div>
+        <div class="route-stop"><div class="route-num">3</div><div class="route-stop-text"><div class="t">Ristorante Allegria</div><div class="d">House pasta bite, in the Vault</div></div></div>
+        <div class="route-stop"><div class="route-num">4</div><div class="route-stop-text"><div class="t">The Garden</div><div class="d">Closing pour + history stop</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="details">
+    <div class="wrap">
+      <div class="tickets" style="margin-bottom:40px;">
+        <div class="ticket">
+          <div class="ticket-main">
+            <div class="ticket-cat">Beer + Eats</div>
+            <h3>Hops &amp; Bites</h3>
+            <p>Downtown taprooms and brewpubs, paired with bites from the same four kitchens.</p>
+            <div class="ticket-tags"><span>21+</span><span>4 stops</span><span>2 hrs</span></div>
+          </div>
+          <div class="ticket-perf"></div>
+          <div class="ticket-stub"><div class="price">$75</div><div class="per">PER GUEST</div><div class="len">2 HRS</div></div>
+        </div>
+      </div>
+
+      <div class="partner-strip">
+        <div class="partner-strip-head">
+          <div>
+            <h3>Your stops on this walk</h3>
+            <p>These aren't tourist-trap drop-ins — every stop is a working relationship with a real downtown Napa business.</p>
+          </div>
+        </div>
+        <div class="partner-grid">
+          <div class="partner-card">
+            <div class="est">EST. 1993 · OBERON BLDG 1893</div>
+            <h4>Downtown Joe's</h4>
+            <p>Napa's oldest saloon building, still brewing its own beer on-site.</p>
+          </div>
+          <div class="partner-card">
+            <div class="est">EST. 2015 · 1ST &amp; MAIN</div>
+            <h4>Palisades</h4>
+            <p>House beer on 30+ taps, tables built from river-salvaged redwood.</p>
+          </div>
+          <div class="partner-card">
+            <div class="est">EST. 2002 · FORMER BANK, 1916</div>
+            <h4>Ristorante Allegria</h4>
+            <p>Dinner inside a converted bank — the vault is now a private room.</p>
+          </div>
+          <div class="partner-card">
+            <div class="est">EST. 2023 · WEST END</div>
+            <h4>The Garden</h4>
+            <p>Indoor/outdoor beer garden anchoring downtown's newest block.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="cta-block cta-single">
+        <div>
+          <div class="eyebrow">Ready to walk?</div>
+          <h2>Reserve Hops &amp; Bites</h2>
+          <p style="max-width:480px;">Tell us what you're into and we'll text you available dates this week.</p>
+          <a href="/#book" class="btn-primary" style="background:var(--stamp); border-color:var(--stamp);">GET AVAILABLE DATES</a>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

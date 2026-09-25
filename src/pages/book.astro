@@ -1,27 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
+// The full booking form lives on the homepage at #book so there's only one
+// booking form to maintain. This page exists as a stable, bookmarkable /book
+// URL (useful for ads/QR codes/etc.) that sends people straight there.
+return Astro.redirect('/#book', 307);
 ---
-<Layout title="Book a Tour" description="Book your Napa Walks tour.">
-  <section class="section">
-    <div class="container">
-      <h1>Book Your Tour</h1>
-      <p>Pick a date, pick a walk, and we'll handle the rest.</p>
-
-      <h2>Booking</h2>
-      <div class="placeholder-note">
-        TRAFFT EMBED GOES HERE. Replace this block with the Trafft booking widget embed code
-        (usually a script tag + a div with a Trafft data attribute, from your Trafft dashboard's
-        "Embed" settings).
-      </div>
-      <!-- <script src="https://your-trafft-embed-url"></script> -->
-      <!-- <div id="trafft-booking-widget"></div> -->
-
-      <h2 style="margin-top: 48px;">Questions First?</h2>
-      <div class="placeholder-note">
-        BREVO FORM EMBED GOES HERE. Replace this block with the Brevo contact/inquiry form embed
-        code (from Brevo's Forms builder, under Contacts &gt; Forms).
-      </div>
-      <!-- <script src="https://your-brevo-form-embed-url"></script> -->
-    </div>
-  </section>
-</Layout>

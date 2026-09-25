@@ -1,17 +1,74 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="About" description="About Napa Walks.">
+<Layout title="About" description="Napa Walks is a downtown Napa walking tour company run by Team Morales and Grow Shark Media, built on real vendor relationships and small-group routes.">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">About Napa Walks</div>
+      <h1>Built by people who<br>actually work downtown.</h1>
+      <p class="lead">Napa Walks isn't a tour-bus operation with a script. It's four routes through downtown Napa, each one built around real relationships with the shops, bars, and restaurants along the way.</p>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div class="wrap">
+      <div class="item"><span class="dot"></span>Groups capped at 10 guests</div>
+      <div class="item"><span class="dot"></span>Locally owned &amp; operated</div>
+      <div class="item"><span class="dot"></span>Fully insured walking tours</div>
+      <div class="item"><span class="dot"></span>Rain-or-shine, easy reschedule</div>
+    </div>
+  </div>
+
   <section class="section">
-    <div class="container">
-      <h1>About Napa Walks</h1>
-      <div class="placeholder-note">
-        Placeholder copy. Replace with the real story: who leads the tours, why this started, and what makes it different from other Napa tour operators.
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The Idea</div>
+        <h2>Napa on foot, at a human pace</h2>
+        <p>Downtown Napa is small enough to walk and dense enough that a car mostly gets in the way. Napa Walks routes people through it on foot, in small groups, with a local host who knows the stops personally.</p>
       </div>
-      <p>
-        Napa Walks brings visitors and locals together on foot, through downtown Napa's streets, wine bars, restaurants,
-        and shops. Every tour is guided, small-group, and built around real local knowledge rather than a script.
+      <p style="max-width:640px; font-size:15px; color:var(--muted);">
+        Each route is built around four stops, a fixed length, and a story worth telling &mdash; not a rotating list of whoever paid for placement.
+        That's the whole model: walk less than two miles, hit four real local businesses, and leave knowing downtown Napa a lot better than when you started.
       </p>
+    </div>
+  </section>
+
+  <section class="section how">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Who Runs This</div>
+        <h2>Team Morales &times; Grow Shark Media</h2>
+      </div>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="stamp-num">01</div>
+          <h4>Team Morales</h4>
+          <p>Operating partner on marketing and day-to-day delivery &mdash; the local relationships that make each route work.</p>
+        </div>
+        <div class="how-step">
+          <div class="stamp-num">02</div>
+          <h4>Grow Shark Media</h4>
+          <p>Digital, brand, and creative support &mdash; the site, the booking flow, and the systems behind the scenes.</p>
+        </div>
+        <div class="how-step">
+          <div class="stamp-num">03</div>
+          <h4>Downtown Napa businesses</h4>
+          <p>Every stop on every route is a working partnership with a real, named business &mdash; not a paid ad slot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cta">
+    <div class="wrap">
+      <div class="cta-block cta-single">
+        <div>
+          <div class="eyebrow">Ready to walk?</div>
+          <h2>See the four routes</h2>
+          <p style="max-width:480px;">Sip &amp; Nibble, Hops &amp; Bites, Heritage Walk, and Boutique Row &mdash; pick the one that fits your afternoon.</p>
+          <a href="/tours" class="btn-primary" style="background:var(--stamp); border-color:var(--stamp);">SEE ALL TOURS</a>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

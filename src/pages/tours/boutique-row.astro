@@ -1,25 +1,29 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="Boutique Row" description="Shopping and design walk through Napa's boutique strip.">
-  <section class="section">
-    <div class="container">
+<Layout title="Boutique Row" description="A downtown Napa shopping walk through independently owned boutiques. Route and pricing coming soon.">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Shopping</div>
       <h1>Boutique Row</h1>
-      <p class="price-tag">Price: TBD</p>
-      <div class="placeholder-note">
-        Placeholder copy and price. Replace with real shop list, duration, and pricing.
+      <p class="lead">A guided walk through downtown Napa's boutique shopping strip, with stops at local, independently owned shops.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="tbd-note">
+        <span class="mono">ROUTE IN PROGRESS</span>
+        Shop list, pricing, and duration for Boutique Row haven't been finalized yet. This page is live so the link works from the tours list and booking form — full route details go here once they're locked.
       </div>
-      <p>
-        A guided walk through downtown Napa's boutique shopping strip, with stops at local, independently
-        owned shops along the way.
-      </p>
-      <h2>What's Included</h2>
-      <ul>
-        <li>Local guide</li>
-        <li>Stops at curated boutiques</li>
-        <li>Shop owner introductions where available</li>
-      </ul>
-      <a href="/book" class="btn">Book This Walk</a>
+      <div class="cta-block cta-single">
+        <div>
+          <div class="eyebrow">Want to be first in line?</div>
+          <h2>Get notified when it's live</h2>
+          <p style="max-width:480px;">Leave your info on the booking form and mention Boutique Row — we'll reach out the moment dates open up.</p>
+          <a href="/#book" class="btn-primary" style="background:var(--stamp); border-color:var(--stamp);">JOIN THE LIST</a>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

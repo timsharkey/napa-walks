@@ -1,22 +1,32 @@
 ---
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/tours', label: 'Tours' },
   { href: '/about', label: 'About' },
-  { href: '/book', label: 'Book Now' },
 ];
 ---
-<header style="background: #fff; border-bottom: 1px solid #eee;">
-  <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px;">
-    <a href="/" style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: bold; color: var(--color-wine); text-decoration: none;">
-      Napa Walks
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="brand">
+      <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(6,2)">
+          <circle cx="70" cy="70" r="67" fill="none" stroke="#F1EAD9" stroke-width="3"/>
+          <circle cx="70" cy="70" r="57" fill="none" stroke="#F1EAD9" stroke-width="1"/>
+          <path d="M 49,85 L 49,57 A 21,21 0 0 1 91,57 L 91,85 Z" fill="#F1EAD9"/>
+          <rect x="42" y="56.5" width="56" height="3.5" fill="#B8763B"/>
+          <path d="M 63,45 L 63,36 A 7,7 0 0 1 77,36 L 77,45 Z" fill="#B8763B"/>
+          <rect x="53" y="63" width="12" height="14" fill="#1F1C18"/><rect x="75" y="63" width="12" height="14" fill="#1F1C18"/>
+          <line y1="63" y2="77" x1="59" x2="59" stroke="#F1EAD9" stroke-width="1.2"/><line x1="53" x2="65" y1="70" y2="70" stroke="#F1EAD9" stroke-width="1.2"/>
+          <line y1="63" y2="77" x1="81" x2="81" stroke="#F1EAD9" stroke-width="1.2"/><line x1="75" x2="87" y1="70" y2="70" stroke="#F1EAD9" stroke-width="1.2"/>
+          <path d="M 30,98 C 40,92 48,104 58,98 C 68,92 76,104 86,98 C 92,95 98,96 102,98" fill="none" stroke="#B8763B" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div class="brand-name">Napa Walks</div>
     </a>
-    <nav style="display: flex; gap: 24px; align-items: center;">
+    <div class="nav-links">
       {links.map((link) => (
-        <a href={link.href} style="text-decoration: none; color: var(--color-charcoal); font-weight: 500;">
-          {link.label}
-        </a>
+        <a href={link.href} class="nav-link">{link.label}</a>
       ))}
-    </nav>
+    </div>
+    <a href="/#book" class="nav-cta">RESERVE YOUR WALK</a>
   </div>
-</header>
+</nav>

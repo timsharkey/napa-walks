@@ -2,23 +2,56 @@
 import Layout from '../../layouts/Layout.astro';
 
 const tours = [
-  { slug: 'heritage-walk', name: 'Heritage Walk', blurb: 'Downtown Napa’s history and architecture, told by locals.' },
-  { slug: 'sip-and-nibble', name: 'Sip & Nibble', blurb: 'A tasting walk through Napa’s wine and small-bites scene.' },
-  { slug: 'hops-and-bites', name: 'Hops & Bites', blurb: 'Craft beer and local eats, downtown Napa style.' },
-  { slug: 'boutique-row', name: 'Boutique Row', blurb: 'Shopping and design walk through Napa’s boutique strip.' },
+  {
+    cat: 'Wine + Eats',
+    name: 'Sip & Nibble',
+    desc: "Downtown Joe's, Palisades, Ristorante Allegria & The Garden — real bites, real pours, real stories.",
+    meta: '21+ · 4 stops · 2.5 hrs · $95/guest',
+    href: '/tours/sip-and-nibble',
+  },
+  {
+    cat: 'Beer + Eats',
+    name: 'Hops & Bites',
+    desc: 'Downtown taprooms and brewpubs, paired with bites from the same four kitchens.',
+    meta: '21+ · 4 stops · 2 hrs · $75/guest',
+    href: '/tours/hops-and-bites',
+  },
+  {
+    cat: 'History',
+    name: 'Heritage Walk',
+    desc: 'The stories behind downtown Napa\'s storefronts — architecture, founders, and the buildings that survived.',
+    meta: 'Route & pricing coming soon',
+    href: '/tours/heritage-walk',
+  },
+  {
+    cat: 'Shopping',
+    name: 'Boutique Row',
+    desc: "A guided walk through downtown Napa's boutique shopping strip, with stops at local, independently owned shops.",
+    meta: 'Route & pricing coming soon',
+    href: '/tours/boutique-row',
+  },
 ];
 ---
-<Layout title="Tours" description="All Napa Walks guided walking tours.">
+<Layout title="Tours" description="Four guided walking tours through downtown Napa: Sip & Nibble, Hops & Bites, Heritage Walk, and Boutique Row.">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">The Routes</div>
+      <h1>Four walks.<br>One downtown.</h1>
+      <p class="lead">Every route is walkable, every stop is vetted, every guide is local. Pick the one that matches your afternoon.</p>
+    </div>
+  </section>
+
   <section class="section">
-    <div class="container">
-      <h1>Our Tours</h1>
+    <div class="wrap">
       <div class="tour-grid">
         {tours.map((tour) => (
-          <div class="tour-card">
+          <a href={tour.href} class="tour-grid-card">
+            <div class="ticket-cat">{tour.cat}</div>
             <h3>{tour.name}</h3>
-            <p>{tour.blurb}</p>
-            <a href={`/tours/${tour.slug}`}>Details &amp; booking &rarr;</a>
-          </div>
+            <p>{tour.desc}</p>
+            <div class="tour-meta">{tour.meta}</div>
+            <div class="card-link">VIEW ROUTE →</div>
+          </a>
         ))}
       </div>
     </div>
