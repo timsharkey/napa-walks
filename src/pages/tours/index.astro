@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const tours = [
+  { slug: 'heritage-walk', name: 'Heritage Walk', blurb: 'Downtown Napa’s history and architecture, told by locals.' },
+  { slug: 'sip-and-nibble', name: 'Sip & Nibble', blurb: 'A tasting walk through Napa’s wine and small-bites scene.' },
+  { slug: 'hops-and-bites', name: 'Hops & Bites', blurb: 'Craft beer and local eats, downtown Napa style.' },
+  { slug: 'boutique-row', name: 'Boutique Row', blurb: 'Shopping and design walk through Napa’s boutique strip.' },
+];
+---
+<Layout title="Tours" description="All Napa Walks guided walking tours.">
+  <section class="section">
+    <div class="container">
+      <h1>Our Tours</h1>
+      <div class="tour-grid">
+        {tours.map((tour) => (
+          <div class="tour-card">
+            <h3>{tour.name}</h3>
+            <p>{tour.blurb}</p>
+            <a href={`/tours/${tour.slug}`}>Details &amp; booking &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

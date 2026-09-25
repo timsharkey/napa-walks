@@ -1,0 +1,22 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/tours', label: 'Tours' },
+  { href: '/about', label: 'About' },
+  { href: '/book', label: 'Book Now' },
+];
+---
+<header style="background: #fff; border-bottom: 1px solid #eee;">
+  <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px;">
+    <a href="/" style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: bold; color: var(--color-wine); text-decoration: none;">
+      Napa Walks
+    </a>
+    <nav style="display: flex; gap: 24px; align-items: center;">
+      {links.map((link) => (
+        <a href={link.href} style="text-decoration: none; color: var(--color-charcoal); font-weight: 500;">
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
