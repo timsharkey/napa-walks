@@ -1,34 +1,283 @@
----
-import Layout from '../layouts/Layout.astro';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downtown Napa Walking Tours — Napa Walks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1F1C18; --ink-soft:#2C2822; --paper:#F1EAD9; --paper-dim:#E7DDC7;
+    --brass:#B8763B; --brass-dark:#8F5A28; --green:#4B5C41; --stamp:#A63A2E;
+    --cream-text:#F1EAD9; --muted:#C9C2AE; --line: rgba(241,234,217,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--ink); color:var(--cream-text); font-family:'Inter', sans-serif; line-height:1.5;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.02em;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--brass);}
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; line-height:1.05;}
 
-const tours = [
-  { slug: 'heritage-walk', name: 'Heritage Walk', blurb: 'Downtown Napa’s history and architecture, told by locals.' },
-  { slug: 'sip-and-nibble', name: 'Sip & Nibble', blurb: 'A tasting walk through Napa’s wine and small-bites scene.' },
-  { slug: 'hops-and-bites', name: 'Hops & Bites', blurb: 'Craft beer and local eats, downtown Napa style.' },
-  { slug: 'boutique-row', name: 'Boutique Row', blurb: 'Shopping and design walk through Napa’s boutique strip.' },
-];
----
-<Layout title="Home" description="Guided walking tours through downtown Napa: heritage, wine, beer, and boutique shopping.">
-  <section class="hero">
-    <div class="container">
-      <h1>See Downtown Napa on Foot</h1>
-      <p>Guided walking tours built around local storytelling, wine, food, and the small businesses that make Napa what it is.</p>
-      <a href="/book" class="btn">Book a Tour</a>
+  nav{border-bottom:1px solid var(--line); padding:20px 0;}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand svg{height:38px; width:auto;}
+  .brand-name{font-family:'Fraunces', serif; font-size:18px; font-weight:600;}
+  .nav-cta{background:var(--brass); color:var(--ink); padding:10px 20px; border-radius:2px; font-size:13px; font-weight:600; font-family:'IBM Plex Mono',monospace;}
+
+  .hero{padding:80px 0 56px;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+  .hero h1{font-size:52px; margin:18px 0 20px; letter-spacing:-0.01em;}
+  .hero h1 em{color:var(--brass); font-style:italic; font-weight:500;}
+  .hero p.lead{font-size:17px; color:var(--muted); max-width:460px; margin-bottom:32px;}
+  .hero-actions{display:flex; gap:14px; align-items:center;}
+  .btn-primary{background:var(--stamp); color:var(--cream-text); padding:15px 26px; border-radius:2px; font-weight:600; font-size:14px; display:inline-block; border:1px solid var(--stamp);}
+  .btn-ghost{border:1px solid var(--line); color:var(--cream-text); padding:15px 22px; border-radius:2px; font-size:14px; font-family:'IBM Plex Mono',monospace;}
+
+  .route-card{background:var(--paper); border-radius:4px; padding:28px 24px 24px; color:var(--ink); position:relative;}
+  .route-card::before{content:''; position:absolute; top:-9px; left:24px; right:24px; height:18px; background-image: radial-gradient(circle, var(--ink) 4px, transparent 4.5px); background-size: 20px 18px; background-repeat: repeat-x; background-position: center;}
+  .route-label{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--brass-dark); margin-bottom:14px;}
+  .route-stop{display:flex; align-items:flex-start; gap:12px; padding:10px 0; border-bottom:1px dashed rgba(31,28,24,0.18);}
+  .route-stop:last-child{border-bottom:none;}
+  .route-num{width:24px; height:24px; border-radius:50%; background:var(--ink); color:var(--paper); font-family:'IBM Plex Mono',monospace; font-size:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;}
+  .route-stop-text .t{font-weight:600; font-size:14.5px;}
+  .route-stop-text .d{font-size:12.5px; color:#5a5346;}
+
+  .trust{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:20px 0;}
+  .trust .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:13px; color:var(--muted);}
+  .trust .item{display:flex; align-items:center; gap:8px;}
+  .dot{width:5px; height:5px; border-radius:50%; background:var(--brass); display:inline-block;}
+
+  .section{padding:80px 0;}
+  .section-head{max-width:600px; margin-bottom:44px;}
+  .section-head h2{font-size:36px; margin-top:14px;}
+  .section-head p{color:var(--muted); margin-top:14px; font-size:15.5px;}
+
+  .tickets{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  .ticket{background:var(--paper); color:var(--ink); border-radius:4px; display:grid; grid-template-columns:1fr 108px; position:relative;}
+  .ticket-perf{background-image: radial-gradient(circle, var(--ink) 4.5px, transparent 5px); background-size: 18px 20px; background-repeat: repeat-y; background-position: center; width:1px;}
+  .ticket-main{padding:26px 22px;}
+  .ticket-cat{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--brass-dark); margin-bottom:8px;}
+  .ticket h3{font-size:23px; margin-bottom:8px;}
+  .ticket p{font-size:13.5px; color:#584f3f; margin-bottom:14px;}
+  .ticket-tags{display:flex; gap:6px; flex-wrap:wrap;}
+  .ticket-tags span{font-family:'IBM Plex Mono',monospace; font-size:10.5px; background:rgba(31,28,24,0.07); padding:4px 8px; border-radius:2px; color:#453f33;}
+  .ticket-stub{background:var(--ink); color:var(--paper); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px 8px; text-align:center; border-radius:0 4px 4px 0;}
+  .ticket-stub .price{font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:var(--brass);}
+  .ticket-stub .per{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--muted); margin-top:2px;}
+  .ticket-stub .len{font-family:'IBM Plex Mono',monospace; font-size:10.5px; margin-top:12px; border-top:1px dashed rgba(241,234,217,0.25); padding-top:10px; width:100%;}
+
+  /* PARTNER STRIP */
+  .partner-strip{background:var(--paper); border-radius:6px; padding:36px 32px;}
+  .partner-strip-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:24px; flex-wrap:wrap; gap:12px;}
+  .partner-strip-head h3{color:var(--ink); font-size:22px;}
+  .partner-strip-head p{color:#584f3f; font-size:13px; max-width:420px;}
+  .partner-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .partner-card{border:1px solid rgba(31,28,24,0.12); border-radius:4px; padding:16px; color:var(--ink);}
+  .partner-card .est{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--brass-dark); letter-spacing:0.06em; margin-bottom:6px;}
+  .partner-card h4{font-family:'Fraunces',serif; font-size:16px; font-weight:600; margin-bottom:6px;}
+  .partner-card p{font-size:12px; color:#584f3f; line-height:1.45;}
+
+  .how{background:var(--ink-soft);}
+  .how-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+  .how-step{padding:32px 26px; border-right:1px solid var(--line);}
+  .how-step:last-child{border-right:none;}
+  .how-step .stamp-num{font-family:'Fraunces',serif; font-style:italic; font-size:34px; color:var(--brass); margin-bottom:12px;}
+  .how-step h4{font-family:'Inter'; font-size:15.5px; font-weight:600; margin-bottom:8px;}
+  .how-step p{font-size:13.5px; color:var(--muted);}
+
+  .cta-block{background:var(--paper); color:var(--ink); border-radius:6px; padding:52px; display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .cta-block h2{font-size:32px; color:var(--ink);}
+  .cta-block .eyebrow{color:var(--stamp);}
+  .cta-block p{font-size:14.5px; color:#5a5346; margin-top:14px; max-width:400px;}
+  .form-field{margin-bottom:14px;}
+  .form-field label{font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; color:#5a5346; display:block; margin-bottom:6px;}
+  .form-field input, .form-field select{width:100%; padding:12px 14px; border:1px solid rgba(31,28,24,0.2); border-radius:2px; background:#fff; font-family:'Inter'; font-size:14px; color:var(--ink);}
+  .form-submit{width:100%; background:var(--stamp); color:var(--cream-text); border:none; padding:15px; font-weight:600; font-size:14px; border-radius:2px; margin-top:6px; font-family:'Inter';}
+  .form-fine{font-size:11px; color:#8a8168; margin-top:10px;}
+
+  footer{border-top:1px solid var(--line); padding:36px 0;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  footer .f-left{font-size:12.5px; color:var(--muted); font-family:'IBM Plex Mono',monospace;}
+  footer .f-right{display:flex; gap:22px; font-size:12.5px; color:var(--muted);}
+
+  @media (max-width: 880px){
+    .hero-grid, .cta-block{grid-template-columns:1fr;}
+    .tickets, .partner-grid{grid-template-columns:1fr;}
+    .how-grid{grid-template-columns:1fr;}
+    .how-step{border-right:none; border-bottom:1px solid var(--line);}
+    .hero h1{font-size:36px;}
+    .cta-block{padding:32px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(6,2)">
+          <circle cx="70" cy="70" r="67" fill="none" stroke="#F1EAD9" stroke-width="3"/>
+          <circle cx="70" cy="70" r="57" fill="none" stroke="#F1EAD9" stroke-width="1"/>
+          <path d="M 49,85 L 49,57 A 21,21 0 0 1 91,57 L 91,85 Z" fill="#F1EAD9"/>
+          <rect x="42" y="56.5" width="56" height="3.5" fill="#B8763B"/>
+          <path d="M 63,45 L 63,36 A 7,7 0 0 1 77,36 L 77,45 Z" fill="#B8763B"/>
+          <rect x="53" y="63" width="12" height="14" fill="#1F1C18"/><rect x="75" y="63" width="12" height="14" fill="#1F1C18"/>
+          <line y1="63" y2="77" x1="59" x2="59" stroke="#F1EAD9" stroke-width="1.2"/><line x1="53" x2="65" y1="70" y2="70" stroke="#F1EAD9" stroke-width="1.2"/>
+          <line y1="63" y2="77" x1="81" x2="81" stroke="#F1EAD9" stroke-width="1.2"/><line x1="75" x2="87" y1="70" y2="70" stroke="#F1EAD9" stroke-width="1.2"/>
+          <path d="M 30,98 C 40,92 48,104 58,98 C 68,92 76,104 86,98 C 92,95 98,96 102,98" fill="none" stroke="#B8763B" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div class="brand-name">Napa Walks</div>
     </div>
-  </section>
+    <a href="#book" class="nav-cta">RESERVE YOUR WALK</a>
+  </div>
+</nav>
 
-  <section class="section">
-    <div class="container">
-      <h2>Choose Your Walk</h2>
-      <div class="tour-grid">
-        {tours.map((tour) => (
-          <div class="tour-card">
-            <h3>{tour.name}</h3>
-            <p>{tour.blurb}</p>
-            <a href={`/tours/${tour.slug}`}>Learn more &rarr;</a>
-          </div>
-        ))}
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Downtown Napa · On Foot · Locally Guided</div>
+      <h1>Napa doesn't need<br>a car. <em>It needs<br>a good route.</em></h1>
+      <p class="lead">Four guided walks through downtown Napa — wine, beer, boutiques, and the stories behind the storefronts. Small groups, local hosts, real vendor relationships.</p>
+      <div class="hero-actions">
+        <a href="#tickets" class="btn-primary">SEE TOUR PACKAGES</a>
+        <a href="#book" class="btn-ghost">CHECK DATES →</a>
       </div>
     </div>
-  </section>
-</Layout>
+    <div class="route-card">
+      <div class="route-label">Sample Route — Sip &amp; Nibble</div>
+      <div class="route-stop"><div class="route-num">1</div><div class="route-stop-text"><div class="t">Downtown Joe's</div><div class="d">House-brewed flight + bite</div></div></div>
+      <div class="route-stop"><div class="route-num">2</div><div class="route-stop-text"><div class="t">Palisades</div><div class="d">Local tap pour + bite</div></div></div>
+      <div class="route-stop"><div class="route-num">3</div><div class="route-stop-text"><div class="t">Ristorante Allegria</div><div class="d">House pasta bite, in the Vault</div></div></div>
+      <div class="route-stop"><div class="route-num">4</div><div class="route-stop-text"><div class="t">The Garden</div><div class="d">Closing pour + history stop</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="item"><span class="dot"></span>Groups capped at 10 guests</div>
+    <div class="item"><span class="dot"></span>Locally owned &amp; operated</div>
+    <div class="item"><span class="dot"></span>Fully insured walking tours</div>
+    <div class="item"><span class="dot"></span>Rain-or-shine, easy reschedule</div>
+  </div>
+</div>
+
+<section class="section" id="tickets">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The Packages</div>
+      <h2>Pick your pace, pick your pour</h2>
+      <p>Every route is walkable, every stop is vetted, every guide is local.</p>
+    </div>
+    <div class="tickets" style="margin-bottom:40px;">
+      <div class="ticket">
+        <div class="ticket-main">
+          <div class="ticket-cat">Wine + Eats</div>
+          <h3>Sip &amp; Nibble</h3>
+          <p>Downtown Joe's, Palisades, Ristorante Allegria &amp; The Garden — real bites, real pours, real stories.</p>
+          <div class="ticket-tags"><span>21+</span><span>4 stops</span><span>2.5 hrs</span></div>
+        </div>
+        <div class="ticket-perf"></div>
+        <div class="ticket-stub"><div class="price">$95</div><div class="per">PER GUEST</div><div class="len">2.5 HRS</div></div>
+      </div>
+      <div class="ticket">
+        <div class="ticket-main">
+          <div class="ticket-cat">Beer + Eats</div>
+          <h3>Hops &amp; Bites</h3>
+          <p>Downtown taprooms and brewpubs, paired with bites from the same four kitchens.</p>
+          <div class="ticket-tags"><span>21+</span><span>4 stops</span><span>2 hrs</span></div>
+        </div>
+        <div class="ticket-perf"></div>
+        <div class="ticket-stub"><div class="price">$75</div><div class="per">PER GUEST</div><div class="len">2 HRS</div></div>
+      </div>
+    </div>
+
+    <div class="partner-strip">
+      <div class="partner-strip-head">
+        <div>
+          <h3>Your stops on Sip &amp; Nibble and Hops &amp; Bites</h3>
+          <p>These aren't tourist-trap drop-ins — every stop is a working relationship with a real downtown Napa business.</p>
+        </div>
+      </div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="est">EST. 1993 · OBERON BLDG 1893</div>
+          <h4>Downtown Joe's</h4>
+          <p>Napa's oldest saloon building, still brewing its own beer on-site.</p>
+        </div>
+        <div class="partner-card">
+          <div class="est">EST. 2015 · 1ST &amp; MAIN</div>
+          <h4>Palisades</h4>
+          <p>House beer on 30+ taps, tables built from river-salvaged redwood.</p>
+        </div>
+        <div class="partner-card">
+          <div class="est">EST. 2002 · FORMER BANK, 1916</div>
+          <h4>Ristorante Allegria</h4>
+          <p>Dinner inside a converted bank — the vault is now a private room.</p>
+        </div>
+        <div class="partner-card">
+          <div class="est">EST. 2023 · WEST END</div>
+          <h4>The Garden</h4>
+          <p>Indoor/outdoor beer garden anchoring downtown's newest block.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How It Works</div>
+      <h2>Book in minutes, walk the same week</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step"><div class="stamp-num">01</div><h4>Pick your tour + date</h4><p>Choose from four routes and see live availability for the week ahead.</p></div>
+      <div class="how-step"><div class="stamp-num">02</div><h4>We confirm your spot</h4><p>A local host confirms headcount, dietary notes, and meeting point.</p></div>
+      <div class="how-step"><div class="stamp-num">03</div><h4>Walk downtown Napa</h4><p>Small group, local guide, real stops — no bus, no rush.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="book">
+  <div class="wrap">
+    <div class="cta-block">
+      <div>
+        <div class="eyebrow">Reserve Your Walk</div>
+        <h2>Get on the next<br>downtown Napa walk</h2>
+        <p>Tell us what you're into and we'll text you available dates this week.</p>
+      </div>
+      <div>
+        <div class="form-field"><label>Full Name</label><input type="text" placeholder="Jane Smith"></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="jane@email.com"></div>
+        <div class="form-field"><label>Phone</label><input type="tel" placeholder="(707) 555-0134"></div>
+        <div class="form-field">
+          <label>Which walk?</label>
+          <select>
+            <option>Sip &amp; Nibble — Wine + Eats</option>
+            <option>Hops &amp; Bites — Beer + Eats</option>
+            <option>Boutique Row — Shopping</option>
+            <option>Heritage Walk — History</option>
+          </select>
+        </div>
+        <button class="form-submit">GET AVAILABLE DATES</button>
+        <div class="form-fine">We'll text you back within one business day.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-left">TEAM MORALES × GROW SHARK MEDIA — DOWNTOWN NAPA WALKING TOURS</div>
+    <div class="f-right"><span>napawalks.com</span><span>Fully Insured</span><span>@napawalks</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
