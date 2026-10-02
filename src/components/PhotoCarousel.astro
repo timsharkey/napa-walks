@@ -1,0 +1,148 @@
+---
+// Scroll-snap photo carousel with prev/next controls and a click-to-enlarge lightbox.
+// Works without JS (swipe/scroll); JS adds buttons, counter, and lightbox.
+interface Photo { slug: string; alt: string; caption: string }
+interface Props { photos: Photo[]; id: string; label: string }
+const { photos, id, label } = Astro.props;
+const base = '/images/see-napa/';
+---
+<div class="pc" data-carousel id={id}>
+  <div class="pc-track" role="region" aria-label={label} tabindex="0">
+    {photos.map((p, i) => (
+      <figure class="pc-slide">
+        <button type="button" class="pc-open" data-index={i} aria-label={`Enlarge photo: ${p.caption}`}>
+          <img
+            src={`${base}${p.slug}-sm.webp`}
+            srcset={`${base}${p.slug}-sm.webp 480w, ${base}${p.slug}.webp 900w`}
+            sizes="(max-width: 880px) 78vw, 300px"
+            alt={p.alt}
+            width="480"
+            height="640"
+            loading={i < 4 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        </button>
+        <figcaption>
+          <span class="pc-num">{String(i + 1).padStart(2, '0')}</span>
+          <span>{p.caption}</span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <div class="pc-controls">
+    <span class="pc-count" aria-hidden="true">01 / {String(photos.length).padStart(2, '0')}</span>
+    <div class="pc-btns">
+      <button type="button" class="pc-btn pc-prev" aria-label="Previous photos">←</button>
+      <button type="button" class="pc-btn pc-next" aria-label="Next photos">→</button>
+    </div>
+  </div>
+
+  <dialog class="pc-lightbox" aria-label="Photo viewer">
+    <div class="pc-lb-inner">
+      <img class="pc-lb-img" alt="" />
+      <div class="pc-lb-bar">
+        <span class="pc-lb-cap"></span>
+        <div class="pc-btns">
+          <button type="button" class="pc-btn pc-lb-prev" aria-label="Previous photo">←</button>
+          <button type="button" class="pc-btn pc-lb-next" aria-label="Next photo">→</button>
+          <button type="button" class="pc-btn pc-lb-close" aria-label="Close">✕</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <script type="application/json" class="pc-data" set:html={JSON.stringify(photos.map((p) => ({ src: `${base}${p.slug}.webp`, alt: p.alt, caption: p.caption })))} />
+</div>
+
+<style is:global>
+  .pc { position: relative; }
+  .pc-track {
+    display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; padding-bottom: 6px; scrollbar-width: thin;
+    scrollbar-color: var(--brass) transparent; outline: none;
+  }
+  .pc-track:focus-visible { outline: 1px dashed var(--brass); outline-offset: 6px; }
+  .pc-slide { flex: 0 0 300px; scroll-snap-align: start; margin: 0; }
+  .pc-open { display: block; width: 100%; padding: 0; border: 0; background: var(--ink-soft); cursor: zoom-in; border-radius: 4px; overflow: hidden; }
+  .pc-open img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; transition: transform .5s ease, filter .5s ease; filter: saturate(0.92); }
+  .pc-open:hover img, .pc-open:focus-visible img { transform: scale(1.03); filter: saturate(1); }
+  .pc-open:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+  .pc-slide figcaption { display: flex; gap: 10px; margin-top: 12px; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+  .pc-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--brass); padding-top: 2px; flex-shrink: 0; }
+  .pc-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .pc-count { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); }
+  .pc-btns { display: flex; gap: 8px; }
+  .pc-btn {
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: transparent;
+    color: var(--cream-text); font-size: 16px; cursor: pointer; transition: background .2s, border-color .2s, color .2s;
+  }
+  .pc-btn:hover:not(:disabled) { background: var(--brass); border-color: var(--brass); color: var(--ink); }
+  .pc-btn:disabled { opacity: 0.3; cursor: default; }
+  .pc-btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+  .pc-lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; margin: auto; }
+  .pc-lightbox::backdrop { background: rgba(20, 18, 15, 0.92); }
+  .pc-lb-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 16px; }
+  .pc-lb-img { max-width: min(92vw, 900px); max-height: 78vh; width: auto; height: auto; border-radius: 4px; display: block; }
+  .pc-lb-bar { width: min(92vw, 900px); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .pc-lb-cap { color: var(--cream-text); font-size: 14px; }
+
+  @media (max-width: 880px) {
+    .pc-slide { flex-basis: 78vw; }
+    .pc-track { gap: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pc-track { scroll-behavior: auto; }
+    .pc-open img { transition: none; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('.pc-track')!;
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.pc-slide'));
+    const prev = root.querySelector<HTMLButtonElement>('.pc-prev')!;
+    const next = root.querySelector<HTMLButtonElement>('.pc-next')!;
+    const count = root.querySelector<HTMLElement>('.pc-count')!;
+    const total = String(slides.length).padStart(2, '0');
+    const data = JSON.parse(root.querySelector('.pc-data')!.textContent || '[]');
+
+    const step = () => (slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth);
+    const update = () => {
+      const i = Math.round(track.scrollLeft / step());
+      count.textContent = `${String(Math.min(i + 1, slides.length)).padStart(2, '0')} / ${total}`;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    };
+    prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
+    next.addEventListener('click', () => track.scrollBy({ left: step() }));
+    track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); }
+    });
+    window.addEventListener('resize', update);
+    update();
+
+    // Lightbox
+    const dlg = root.querySelector<HTMLDialogElement>('.pc-lightbox')!;
+    const img = dlg.querySelector<HTMLImageElement>('.pc-lb-img')!;
+    const cap = dlg.querySelector<HTMLElement>('.pc-lb-cap')!;
+    let cur = 0;
+    const show = (i: number) => {
+      cur = (i + data.length) % data.length;
+      img.src = data[cur].src; img.alt = data[cur].alt;
+      cap.textContent = `${String(cur + 1).padStart(2, '0')} / ${total}  ·  ${data[cur].caption}`;
+    };
+    root.querySelectorAll<HTMLButtonElement>('.pc-open').forEach((b) =>
+      b.addEventListener('click', () => { show(Number(b.dataset.index)); dlg.showModal(); })
+    );
+    dlg.querySelector('.pc-lb-prev')!.addEventListener('click', () => show(cur - 1));
+    dlg.querySelector('.pc-lb-next')!.addEventListener('click', () => show(cur + 1));
+    dlg.querySelector('.pc-lb-close')!.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'ArrowLeft') show(cur - 1);
+    });
+  });
+</script>
