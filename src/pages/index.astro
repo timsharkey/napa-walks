@@ -1,3 +1,7 @@
+---
+import PhotoCarousel from '../components/PhotoCarousel.astro';
+import { highlights } from '../data/seeNapa.js';
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +33,11 @@
   .nav-links{display:flex; align-items:center; gap:28px;}
   .nav-links a{font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted);}
   .nav-links a:hover{color:var(--cream-text);}
+  .see-strip{border-top:1px solid var(--line);}
+  .see-strip-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:36px; flex-wrap:wrap;}
+  .see-strip-link{font-size:12px !important; padding:11px 16px !important; display:inline-block;}
+  .see-strip-link:hover{border-color:var(--brass); color:var(--brass);}
+
   @media (max-width: 880px){ .nav-links{display:none;} }
 
   .hero{padding:80px 0 56px;}
@@ -139,6 +148,7 @@
     </div>
     <div class="nav-links">
       <a href="/tours">Tours</a>
+      <a href="/see-napa">See Napa</a>
       <a href="/about">About</a>
     </div>
     <a href="#book" class="nav-cta">RESERVE YOUR WALK</a>
@@ -235,6 +245,20 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section see-strip" id="see-napa">
+  <div class="wrap">
+    <div class="see-strip-head">
+      <div class="section-head" style="margin-bottom:0;">
+        <div class="eyebrow">See Napa</div>
+        <h2>A little of what you'll walk through</h2>
+        <p>The river, the old buildings, and the rooms where the pouring happens. All shot on foot, downtown.</p>
+      </div>
+      <a href="/see-napa" class="btn-ghost see-strip-link">SEE THE FULL GALLERY →</a>
+    </div>
+    <PhotoCarousel photos={highlights} id="carousel-home" label="Downtown Napa photo highlights" />
   </div>
 </section>
 

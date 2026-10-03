@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PhotoCarousel from '../components/PhotoCarousel.astro';
+import { groups } from '../data/seeNapa.js';
+---
+<Layout title="See Napa" description="Photos from the streets, river, and rooms of downtown Napa, shot on our walking routes.">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">See Napa · Shot on Our Routes</div>
+      <h1>A little of what<br>you'll walk through</h1>
+      <p class="lead">The river, the old buildings, the tasting rooms, and the side streets in between. Every photo here was taken on foot in downtown Napa.</p>
+      <div class="sn-jump">
+        {groups.map((g) => <a href={`#${g.id}`} class="sn-jump-link">{g.eyebrow.split('· ')[1]}</a>)}
+      </div>
+    </div>
+  </section>
+
+  {groups.map((g, i) => (
+    <section class={`section sn-group${i % 2 === 1 ? ' how' : ''}`} id={g.id}>
+      <div class="wrap">
+        <div class="sn-head">
+          <div class="section-head" style="margin-bottom:0;">
+            <div class="eyebrow">{g.eyebrow}</div>
+            <h2>{g.title}</h2>
+            <p>{g.intro}</p>
+          </div>
+          <div class="sn-links">
+            <a href={g.link.href} class="btn-ghost">{g.link.label}</a>
+            {g.link.alt && <a href={g.link.alt.href} class="btn-ghost">{g.link.alt.label}</a>}
+          </div>
+        </div>
+        <PhotoCarousel photos={g.photos} id={`carousel-${g.id}`} label={g.title} />
+      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-block cta-single">
+        <div>
+          <div class="eyebrow">Seen Enough?</div>
+          <h2>Now go walk it</h2>
+          <p style="max-width:480px;">Small groups, local guides, and the stops in these photos. Pick a walk and we'll text you open dates.</p>
+          <a href="/#book" class="btn-primary">RESERVE YOUR WALK</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sn-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .sn-jump-link {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 2px; padding: 8px 12px;
+  }
+  .sn-jump-link:hover { color: var(--ink); background: var(--brass); border-color: var(--brass); }
+  .sn-group { scroll-margin-top: 12px; }
+  .sn-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px; flex-wrap: wrap; }
+  .sn-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .sn-links .btn-ghost { font-size: 12px; padding: 11px 16px; }
+  .sn-links .btn-ghost:hover { border-color: var(--brass); color: var(--brass); }
+</style>
