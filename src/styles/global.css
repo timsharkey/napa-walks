@@ -1,16 +1,32 @@
-/* ---- Napa Walks real design system (approved, vintage-editorial style) ---- */
+/* ---- Napa Walks design system: "Retro Groove" palette (forest ink + cream + mustard/orange/teal) ---- */
 :root {
-  --ink: #1F1C18;
-  --ink-soft: #2C2822;
-  --paper: #F1EAD9;
-  --paper-dim: #E7DDC7;
-  --brass: #B8763B;
-  --brass-dark: #8F5A28;
-  --green: #4B5C41;
-  --stamp: #A63A2E;
-  --cream-text: #F1EAD9;
-  --muted: #C9C2AE;
-  --line: rgba(241, 234, 217, 0.16);
+  /* Core palette, sampled from the reference art */
+  --forest: #123F34;
+  --teal: #00978E;
+  --jade: #59AA80;
+  --sage: #A3C89E;
+  --mist: #DFE3C5;
+  --cream: #FEF0C5;
+  --mustard: #F2AD32;
+  --orange: #E36628;
+  --rust: #9D6337;
+
+  /* Semantic names the rest of the site already uses */
+  --ink: var(--forest);
+  --ink-soft: #0E3329;          /* slightly deeper forest for alternating sections */
+  --paper: var(--cream);
+  --paper-dim: var(--mist);
+  --brass: var(--mustard);      /* accent on dark backgrounds */
+  --brass-dark: #8A5530;        /* accent text on cream; darker than --rust for AA contrast */
+  --green: var(--jade);
+  --stamp: var(--orange);       /* decorative only; not used behind small text */
+  --cream-text: var(--cream);
+  --muted: #C9D8BC;
+  --line: rgba(254, 240, 197, 0.18);
+
+  /* Text on cream/paper surfaces */
+  --ink-muted: #3B5E52;
+  --ink-faint: #4F6E62;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,14 +92,14 @@ nav.site-nav .wrap { display: flex; align-items: center; justify-content: space-
 
 /* Buttons */
 .btn-primary {
-  background: var(--stamp);
-  color: var(--cream-text);
+  background: var(--mustard);
+  color: var(--ink);
   padding: 15px 26px;
   border-radius: 2px;
   font-weight: 600;
   font-size: 14px;
   display: inline-block;
-  border: 1px solid var(--stamp);
+  border: 1px solid var(--mustard);
 }
 .btn-ghost {
   border: 1px solid var(--line);
@@ -109,29 +125,29 @@ nav.site-nav .wrap { display: flex; align-items: center; justify-content: space-
   background-size: 20px 18px; background-repeat: repeat-x; background-position: center;
 }
 .route-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-dark); margin-bottom: 14px; }
-.route-stop { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px dashed rgba(31,28,24,0.18); }
+.route-stop { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px dashed rgba(18,63,52,0.18); }
 .route-stop:last-child { border-bottom: none; }
 .route-num { width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: var(--paper); font-family: 'IBM Plex Mono', monospace; font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
 .route-stop-text .t { font-weight: 600; font-size: 14.5px; }
-.route-stop-text .d { font-size: 12.5px; color: #5a5346; }
+.route-stop-text .d { font-size: 12.5px; color: var(--ink-muted); }
 
 .tickets { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-.ticket { background: var(--paper); color: var(--ink); border-radius: 4px; display: grid; grid-template-columns: 1fr 108px; position: relative; }
+.ticket { background: var(--paper); color: var(--ink); border-radius: 4px; display: grid; grid-template-columns: 1fr 1px 108px; position: relative; overflow: hidden; }
 .ticket-perf { background-image: radial-gradient(circle, var(--ink) 4.5px, transparent 5px); background-size: 18px 20px; background-repeat: repeat-y; background-position: center; width: 1px; }
 .ticket-main { padding: 26px 22px; }
 .ticket-cat { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-dark); margin-bottom: 8px; }
 .ticket h3 { font-size: 23px; margin-bottom: 8px; }
-.ticket p { font-size: 13.5px; color: #584f3f; margin-bottom: 14px; }
+.ticket p { font-size: 13.5px; color: var(--ink-muted); margin-bottom: 14px; }
 .ticket-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.ticket-tags span { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; background: rgba(31,28,24,0.07); padding: 4px 8px; border-radius: 2px; color: #453f33; }
+.ticket-tags span { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; background: rgba(18,63,52,0.07); padding: 4px 8px; border-radius: 2px; color: var(--ink-muted); }
 .ticket-stub { background: var(--ink); color: var(--paper); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 8px; text-align: center; border-radius: 0 4px 4px 0; }
 .ticket-stub .price { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: var(--brass); }
 .ticket-stub .per { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: var(--muted); margin-top: 2px; }
-.ticket-stub .len { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; margin-top: 12px; border-top: 1px dashed rgba(241,234,217,0.25); padding-top: 10px; width: 100%; }
+.ticket-stub .len { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; margin-top: 12px; border-top: 1px dashed rgba(254,240,197,0.25); padding-top: 10px; width: 100%; }
 
 /* TBD callout for tours without finalized content yet */
 .tbd-note {
-  background: rgba(184,118,59,0.12);
+  background: rgba(242,173,50,0.14);
   border: 1px dashed var(--brass);
   border-radius: 4px;
   padding: 18px 20px;
@@ -145,12 +161,12 @@ nav.site-nav .wrap { display: flex; align-items: center; justify-content: space-
 .partner-strip { background: var(--paper); border-radius: 6px; padding: 36px 32px; }
 .partner-strip-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
 .partner-strip-head h3 { color: var(--ink); font-size: 22px; }
-.partner-strip-head p { color: #584f3f; font-size: 13px; max-width: 420px; }
+.partner-strip-head p { color: var(--ink-muted); font-size: 13px; max-width: 420px; }
 .partner-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.partner-card { border: 1px solid rgba(31,28,24,0.12); border-radius: 4px; padding: 16px; color: var(--ink); }
+.partner-card { border: 1px solid rgba(18,63,52,0.12); border-radius: 4px; padding: 16px; color: var(--ink); }
 .partner-card .est { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: var(--brass-dark); letter-spacing: 0.06em; margin-bottom: 6px; }
 .partner-card h4 { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-.partner-card p { font-size: 12px; color: #584f3f; line-height: 1.45; }
+.partner-card p { font-size: 12px; color: var(--ink-muted); line-height: 1.45; }
 
 /* How it works */
 .how { background: var(--ink-soft); }
@@ -164,22 +180,22 @@ nav.site-nav .wrap { display: flex; align-items: center; justify-content: space-
 /* CTA / form block */
 .cta-block { background: var(--paper); color: var(--ink); border-radius: 6px; padding: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
 .cta-block h2 { font-size: 32px; color: var(--ink); }
-.cta-block .eyebrow { color: var(--stamp); }
-.cta-block p { font-size: 14.5px; color: #5a5346; margin-top: 14px; max-width: 400px; }
+.cta-block .eyebrow { color: var(--brass-dark); }
+.cta-block p { font-size: 14.5px; color: var(--ink-muted); margin-top: 14px; max-width: 400px; }
 .form-field { margin-bottom: 14px; }
-.form-field label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: #5a5346; display: block; margin-bottom: 6px; }
-.form-field input, .form-field select { width: 100%; padding: 12px 14px; border: 1px solid rgba(31,28,24,0.2); border-radius: 2px; background: #fff; font-family: 'Inter'; font-size: 14px; color: var(--ink); }
-.form-submit { width: 100%; background: var(--stamp); color: var(--cream-text); border: none; padding: 15px; font-weight: 600; font-size: 14px; border-radius: 2px; margin-top: 6px; font-family: 'Inter'; }
-.form-fine { font-size: 11px; color: #8a8168; margin-top: 10px; }
+.form-field label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-muted); display: block; margin-bottom: 6px; }
+.form-field input, .form-field select { width: 100%; padding: 12px 14px; border: 1px solid rgba(18,63,52,0.2); border-radius: 2px; background: #fff; font-family: 'Inter'; font-size: 14px; color: var(--ink); }
+.form-submit { width: 100%; background: var(--forest); color: var(--cream); border: none; padding: 15px; font-weight: 600; font-size: 14px; border-radius: 2px; margin-top: 6px; font-family: 'Inter'; }
+.form-fine { font-size: 11px; color: var(--ink-faint); margin-top: 10px; }
 
 /* Tours listing grid */
 .tour-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .tour-grid-card { background: var(--paper); color: var(--ink); border-radius: 4px; padding: 26px 24px; display: flex; flex-direction: column; gap: 10px; }
 .tour-grid-card .ticket-cat { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-dark); }
 .tour-grid-card h3 { font-size: 22px; }
-.tour-grid-card p { font-size: 13.5px; color: #584f3f; }
-.tour-grid-card .tour-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #6b6250; margin-top: 4px; }
-.tour-grid-card .card-link { margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--stamp); font-weight: 600; }
+.tour-grid-card p { font-size: 13.5px; color: var(--ink-muted); }
+.tour-grid-card .tour-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-muted); margin-top: 4px; }
+.tour-grid-card .card-link { margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--brass-dark); font-weight: 600; }
 
 /* Footer */
 footer.site-footer { border-top: 1px solid var(--line); padding: 36px 0; }
@@ -194,3 +210,47 @@ footer.site-footer .f-right { display: flex; gap: 22px; font-size: 12.5px; color
   .cta-block { padding: 32px; }
   .nav-links { display: none; }
 }
+
+/* ---- Retro Groove motifs ---- */
+
+/* Bar divider (components/Bars.astro) */
+.bars { display: flex; align-items: flex-end; gap: 10px; height: 64px; padding: 0 32px; overflow: hidden; background: var(--ink-soft); }
+.bars .bar { flex: 1; min-width: 8px; border-radius: 999px 999px 0 0; }
+.bar-teal { background: var(--teal); } .bar-sage { background: var(--sage); } .bar-mustard { background: var(--mustard); }
+.bar-orange { background: var(--orange); } .bar-jade { background: var(--jade); } .bar-cream { background: var(--cream); }
+
+/* Ring step markers (concentric circles, from the art) */
+.ring { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 16px;
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 22px; color: var(--ink);
+  background: var(--orange); box-shadow: inset 0 0 0 8px var(--mustard); }
+.how-step:nth-child(2) .ring { background: var(--teal); }
+.how-step:nth-child(3) .ring { background: var(--jade); }
+
+/* Cream hero with brand art on the right */
+.hero-art { background-color: var(--cream); color: var(--ink); position: relative; overflow: hidden;
+  background-image: url('/assets/hero-art.svg'); background-repeat: no-repeat; background-position: right center; background-size: auto 100%; }
+.hero-art .eyebrow { color: var(--brass-dark); }
+.hero-art h1 em { color: var(--orange); }
+.hero-art p.lead { color: var(--ink-muted); }
+.hero-art .btn-primary { background: var(--forest); border-color: var(--forest); color: var(--cream); }
+.hero-art .btn-ghost { border-color: var(--forest); color: var(--forest); }
+@media (max-width: 880px) {
+  .hero-art { background-image: url('/assets/hero-art-mobile.svg'); background-position: center bottom; background-size: 100% auto; padding-bottom: 500px !important; }
+}
+
+/* Featured vs secondary tours */
+.tour-grid-card.is-featured { padding: 32px 28px; border-top: 6px solid var(--mustard); }
+.tour-grid-card.is-featured h3 { font-size: 28px; }
+.tour-grid-card.is-featured .tour-meta { font-size: 13px; color: var(--ink); font-weight: 500; }
+.tour-grid-card.is-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+.tour-grid-card.is-secondary p, .tour-grid-card.is-secondary .tour-meta { color: var(--muted); }
+.tour-grid-card.is-secondary .ticket-cat, .tour-grid-card.is-secondary .card-link { color: var(--mustard); }
+.tour-subhead { margin: 48px 0 18px; }
+.tour-grid.is-secondary-grid { margin-top: 0; }
+
+/* Sample route band (packages section) */
+.route-band { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; align-items: center; margin-bottom: 40px; }
+.route-band h3 { font-size: 28px; margin: 14px 0 12px; }
+.route-band p { color: var(--muted); max-width: 380px; }
+.route-band .route-card { border: 2px solid var(--mustard); }
+@media (max-width: 880px) { .route-band { grid-template-columns: 1fr; gap: 28px; } }

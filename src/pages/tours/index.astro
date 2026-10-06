@@ -31,6 +31,8 @@ const tours = [
     href: '/tours/boutique-row',
   },
 ];
+const featured = tours.filter((t) => ['Sip & Nibble', 'Hops & Bites'].includes(t.name));
+const more = tours.filter((t) => !featured.includes(t));
 ---
 <Layout title="Tours" description="Four guided walking tours through downtown Napa: Sip & Nibble, Hops & Bites, Heritage Walk, and Boutique Row.">
   <section class="page-hero">
@@ -44,8 +46,21 @@ const tours = [
   <section class="section">
     <div class="wrap">
       <div class="tour-grid">
-        {tours.map((tour) => (
-          <a href={tour.href} class="tour-grid-card">
+        {featured.map((tour) => (
+          <a href={tour.href} class="tour-grid-card is-featured">
+            <div class="ticket-cat">{tour.cat}</div>
+            <h3>{tour.name}</h3>
+            <p>{tour.desc}</p>
+            <div class="tour-meta">{tour.meta}</div>
+            <div class="card-link">VIEW ROUTE →</div>
+          </a>
+        ))}
+      </div>
+
+      <div class="tour-subhead eyebrow">More ways to walk</div>
+      <div class="tour-grid is-secondary-grid">
+        {more.map((tour) => (
+          <a href={tour.href} class="tour-grid-card is-secondary">
             <div class="ticket-cat">{tour.cat}</div>
             <h3>{tour.name}</h3>
             <p>{tour.desc}</p>
