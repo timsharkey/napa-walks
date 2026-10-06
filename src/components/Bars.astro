@@ -1,0 +1,13 @@
+---
+// Decorative divider: rounded vertical bars, taken from the "flow" of the brand art.
+// Purely visual (aria-hidden). Heights are fixed so the rhythm is the same every build.
+const bars = [
+  ['teal', 38], ['sage', 70], ['mustard', 52], ['orange', 92], ['jade', 60], ['cream', 78],
+  ['mustard', 44], ['teal', 74], ['orange', 50], ['sage', 86], ['jade', 36], ['mustard', 66],
+  ['teal', 56], ['orange', 82], ['sage', 48], ['jade', 72], ['mustard', 40], ['teal', 88],
+  ['orange', 58], ['sage', 64], ['cream', 46], ['jade', 80], ['mustard', 54], ['orange', 70],
+];
+---
+<div class="bars" aria-hidden="true">
+  {bars.map(([c, h]) => <span class={`bar bar-${c}`} style={`height:${h}%`} />)}
+</div>
