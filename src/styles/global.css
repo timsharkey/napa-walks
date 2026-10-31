@@ -54,7 +54,8 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; line-height: 1.05
 nav.site-nav { border-bottom: 1px solid var(--line); padding: 20px 0; }
 nav.site-nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand svg { height: 38px; width: auto; }
+.brand { background: var(--paper); border-radius: 999px; padding: 6px 16px; }
+.brand img { display: block; height: 40px; width: auto; }
 .brand-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a.nav-link {

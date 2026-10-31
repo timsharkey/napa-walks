@@ -4,49 +4,26 @@ import Layout from '../../layouts/Layout.astro';
 const tours = [
   {
     cat: 'Wine + Eats',
-    name: 'Sip & Nibble',
+    name: 'Sip & Nibbles',
     desc: "Downtown Joe's, Palisades, Ristorante Allegria & The Garden. Real bites, real pours, real stories.",
-    meta: '21+ · 4 stops · 2.5 hrs · $95/guest',
+    meta: '21+ · 4 stops · 2.5 hrs · max 10 guests · $125/guest',
     href: '/tours/sip-and-nibble',
   },
-  {
-    cat: 'Beer + Eats',
-    name: 'Hops & Bites',
-    desc: 'Downtown taprooms and brewpubs, paired with bites from the same four kitchens.',
-    meta: '21+ · 4 stops · 2 hrs · $75/guest',
-    href: '/tours/hops-and-bites',
-  },
-  {
-    cat: 'History',
-    name: 'Heritage Walk',
-    desc: 'The stories behind downtown Napa\'s storefronts: architecture, founders, and the buildings that survived.',
-    meta: 'Route & pricing coming soon',
-    href: '/tours/heritage-walk',
-  },
-  {
-    cat: 'Shopping',
-    name: 'Boutique Row',
-    desc: "A guided walk through downtown Napa's boutique shopping strip, with stops at local, independently owned shops.",
-    meta: 'Route & pricing coming soon',
-    href: '/tours/boutique-row',
-  },
 ];
-const featured = tours.filter((t) => ['Sip & Nibble', 'Hops & Bites'].includes(t.name));
-const more = tours.filter((t) => !featured.includes(t));
 ---
-<Layout title="Tours" description="Four guided walking tours through downtown Napa: Sip & Nibble, Hops & Bites, Heritage Walk, and Boutique Row.">
+<Layout title="Tours" description="Sip & Nibbles: a guided walking tour through downtown Napa. $125/guest, 2.5 hrs, 21+.">
   <section class="page-hero">
     <div class="wrap">
       <div class="eyebrow">The Routes</div>
-      <h1>Four walks.<br>One downtown.</h1>
-      <p class="lead">Every route is walkable, every stop is vetted, every guide is local. Pick the one that matches your afternoon.</p>
+      <h1>One walk.<br>One downtown.</h1>
+      <p class="lead">Every stop is walkable, every stop is vetted, every guide is local.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
       <div class="tour-grid">
-        {featured.map((tour) => (
+        {tours.map((tour) => (
           <a href={tour.href} class="tour-grid-card is-featured">
             <div class="ticket-cat">{tour.cat}</div>
             <h3>{tour.name}</h3>
@@ -57,18 +34,6 @@ const more = tours.filter((t) => !featured.includes(t));
         ))}
       </div>
 
-      <div class="tour-subhead eyebrow">More ways to walk</div>
-      <div class="tour-grid is-secondary-grid">
-        {more.map((tour) => (
-          <a href={tour.href} class="tour-grid-card is-secondary">
-            <div class="ticket-cat">{tour.cat}</div>
-            <h3>{tour.name}</h3>
-            <p>{tour.desc}</p>
-            <div class="tour-meta">{tour.meta}</div>
-            <div class="card-link">VIEW ROUTE →</div>
-          </a>
-        ))}
-      </div>
     </div>
   </section>
 </Layout>
