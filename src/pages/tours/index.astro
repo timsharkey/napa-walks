@@ -8,6 +8,7 @@ const tours = [
     desc: "Downtown Joe's, Palisades, Ristorante Allegria & The Garden. Real nibbles, real pours, real stories.",
     meta: '21+ · 4 stops · 2.5 hrs · max 10 guests · $125/guest',
     href: '/tours/sip-and-nibble',
+    book: 'https://booking.napawalks.com/',
   },
 ];
 ---
@@ -24,13 +25,13 @@ const tours = [
     <div class="wrap">
       <div class="tour-grid">
         {tours.map((tour) => (
-          <a href={tour.href} class="tour-grid-card is-featured">
+          <div class="tour-grid-card is-featured card-linked">
             <div class="ticket-cat">{tour.cat}</div>
-            <h3>{tour.name}</h3>
+            <h3><a href={tour.book} class="card-stretch" aria-label={`Book ${tour.name}`}>{tour.name}</a></h3>
             <p>{tour.desc}</p>
             <div class="tour-meta">{tour.meta}</div>
-            <div class="card-link">VIEW ROUTE →</div>
-          </a>
+            <a href={tour.href} class="card-sublink">See the route</a>
+          </div>
         ))}
       </div>
 
