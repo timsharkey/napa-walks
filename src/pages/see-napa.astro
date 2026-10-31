@@ -24,10 +24,12 @@ import { groups } from '../data/seeNapa.js';
             <h2>{g.title}</h2>
             <p>{g.intro}</p>
           </div>
-          <div class="sn-links">
-            <a href={g.link.href} class="btn-ghost">{g.link.label}</a>
-            {g.link.alt && <a href={g.link.alt.href} class="btn-ghost">{g.link.alt.label}</a>}
-          </div>
+          {g.link && (
+            <div class="sn-links">
+              <a href={g.link.href} class="btn-ghost">{g.link.label}</a>
+              {g.link.alt && <a href={g.link.alt.href} class="btn-ghost">{g.link.alt.label}</a>}
+            </div>
+          )}
         </div>
         <PhotoCarousel photos={g.photos} id={`carousel-${g.id}`} label={g.title} />
       </div>
@@ -41,7 +43,7 @@ import { groups } from '../data/seeNapa.js';
           <div class="eyebrow">Seen Enough?</div>
           <h2>Now go walk it</h2>
           <p style="max-width:480px;">Small groups, local guides, and the stops in these photos. Pick a walk and we'll text you open dates.</p>
-          <a href="/#book" class="btn-primary">RESERVE YOUR WALK</a>
+          <a href="https://booking.napawalks.com/" class="btn-primary">RESERVE YOUR WALK</a>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 Read this whole file before doing anything. It is self-contained on purpose, because a cloud session can only see this repo, not Tim's Documents folder or his claude.ai chats.
 
-Last synced from PROJECT.md: 2026-10-05.
+Last synced: 2026-10-30 (proof-of-concept scope).
 
 ## Your role
 You are Tim's assistant, consultant, and mentor on this project. Do not deviate from this.
@@ -43,15 +43,11 @@ You are Tim's assistant, consultant, and mentor on this project. Do not deviate 
 ## Project snapshot
 **What it is:** Guided walking tour business in downtown Napa (napawalks.com). Owner Tim Sharkey (Grow Shark Media), partnered with Team Morales.
 **Stack:** Astro 5 static site, hosted on Netlify, auto-deploys on push to `main`. Repo: github.com/timsharkey/napa-walks.
-**Tools chosen:** Trafft (booking and payments, not connected yet), Brevo (email, not connected yet), Agiled (operations), Nifty (project management). Domains at GoDaddy, all variants redirect to napawalks.com.
+**Tools chosen:** Trafft (booking and payments, live at booking.napawalks.com, Square connected), Brevo (email, not connected yet), Agiled (operations), Nifty (project management). Domains at GoDaddy, all variants redirect to napawalks.com.
 
-**Tour priority:**
-- Sip & Nibble ($95/guest, 2.5 hrs) and Hops & Bites ($75/guest, 2 hrs) are the two main tours. They lead everywhere.
-- Heritage Walk is third. Boutique Row is fourth (assumed, Tim has not confirmed).
-- Heritage Walk and Boutique Row are placeholder pages ("route in progress") with no real pricing, stops, or duration.
-- Prices live in the tour pages and must match Trafft once it is connected.
+**Current scope (proof of concept, set 2026-10-30):** Only one tour is live: **Sip & Nibbles**, $125 per guest, 2.5 hrs, 21+, max 10 guests (price is final and already set in Trafft). Hops & Bites is removed from the site for now. Heritage Walk and Boutique Row are hidden (files kept, noindex). Booking happens at https://booking.napawalks.com/ (Trafft, live). Prices on the site must always match Trafft.
 
-**Pages:** `/` homepage, `/about` (first-draft copy, Tim must review), `/tours`, four tour detail pages, `/see-napa` photo gallery, `/book` redirects to `/#book`.
+**Pages:** `/` homepage, `/about` (first-draft copy, Tim must review), `/tours`, four tour detail pages, `/see-napa` photo gallery, `/book` redirects to `/#book`. Tour URL slug stays `/tours/sip-and-nibble`.
 
 ## Design system: Retro Groove (live)
 Tokens are in `src/styles/global.css`. Old token names (`--ink`, `--paper`, `--brass`) are kept and remapped.

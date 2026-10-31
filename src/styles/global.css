@@ -54,7 +54,8 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; line-height: 1.05
 nav.site-nav { border-bottom: 1px solid var(--line); padding: 20px 0; }
 nav.site-nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand svg { height: 38px; width: auto; }
+.brand { background: var(--paper); border-radius: 999px; padding: 6px 16px; }
+.brand img { display: block; height: 40px; width: auto; }
 .brand-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a.nav-link {
@@ -144,6 +145,16 @@ nav.site-nav .wrap { display: flex; align-items: center; justify-content: space-
 .ticket-stub .price { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: var(--brass); }
 .ticket-stub .per { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: var(--muted); margin-top: 2px; }
 .ticket-stub .len { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; margin-top: 12px; border-top: 1px dashed rgba(254,240,197,0.25); padding-top: 10px; width: 100%; }
+
+/* Whole-card link (stretched link): the title link covers the card, the sublink sits above it */
+.card-linked { position: relative; transition: transform 0.15s ease; }
+.card-linked:hover, .card-linked:has(.card-stretch:focus-visible) { outline: 3px solid var(--brass); outline-offset: 3px; transform: translateY(-2px); }
+.card-stretch { color: inherit; text-decoration: none; }
+.card-stretch::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.card-stretch:focus-visible { outline: none; }
+.card-sublink { position: relative; z-index: 2; display: inline-block; margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 600; color: var(--brass-dark); text-decoration: underline; text-underline-offset: 3px; }
+.card-sublink:hover { color: var(--ink); }
+.card-sublink:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
 /* TBD callout for tours without finalized content yet */
 .tbd-note {
