@@ -4,6 +4,9 @@ const links = [
   { href: '/see-napa', label: 'See Napa' },
   { href: '/about', label: 'About' },
 ];
+const bookUrl = 'https://booking.napawalks.com/';
+const phoneHref = 'tel:+17078151076';
+const phoneLabel = '(707) 815-1076';
 ---
 <nav class="site-nav">
   <div class="wrap">
@@ -15,6 +18,40 @@ const links = [
         <a href={link.href} class="nav-link">{link.label}</a>
       ))}
     </div>
-    <a href="https://booking.napawalks.com/" class="nav-cta">RESERVE YOUR WALK</a>
+    <div class="nav-actions">
+      <a href={phoneHref} class="nav-phone">{phoneLabel}</a>
+      <a href={bookUrl} class="nav-cta">RESERVE YOUR WALK</a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <div class="wrap">
+      {links.map((link) => (
+        <a href={link.href} class="mobile-link">{link.label}</a>
+      ))}
+      <a href={phoneHref} class="mobile-call">Call {phoneLabel}</a>
+      <a href={bookUrl} class="btn-primary mobile-book">BOOK SIP &amp; NIBBLES</a>
+    </div>
   </div>
 </nav>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) { setOpen(false); toggle.focus(); }
+    });
+  }
+</script>
