@@ -46,10 +46,10 @@ export const groups = [
     id: 'pours',
     eyebrow: '03 · Pours & Plates',
     title: 'Where the tasting happens',
-    intro: 'A few of the rooms you will actually sit down in, on Sip & Nibble and Hops & Bites.',
-    link: { href: '/tours/sip-and-nibble', label: 'SEE SIP & NIBBLE →', alt: { href: '/tours/hops-and-bites', label: 'SEE HOPS & BITES →' } },
+    intro: 'A few of the rooms you will actually sit down in, on Sip & Nibbles.',
+    link: { href: '/tours/sip-and-nibble', label: 'SEE SIP & NIBBLES →' },
     photos: [
-      { slug: 'downtown-joes', alt: 'The tiled corner entrance of Downtown Joe’s with a neon sign in the window', caption: 'Downtown Joe’s, a stop on Sip & Nibble and Hops & Bites.' },
+      { slug: 'downtown-joes', alt: 'The tiled corner entrance of Downtown Joe’s with a neon sign in the window', caption: 'Downtown Joe’s, a stop on Sip & Nibbles.' },
       { slug: 'downtown-joes-bar', alt: 'The wooden bar and stools inside Downtown Joe’s', caption: 'Inside Downtown Joe’s.' },
       { slug: 'the-garden-sign', alt: 'The Garden logo painted on a red brick wall', caption: 'The Garden, downtown’s beer garden.' },
       { slug: 'the-garden-hall', alt: 'Long wooden tables under an open, canopied roof at The Garden', caption: 'Long tables under the open roof at The Garden.' },
