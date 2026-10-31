@@ -8,7 +8,7 @@ export const groups = [
     eyebrow: '01 · Along the River',
     title: 'Where downtown meets the water',
     intro: 'The River Walk, the old mill, and a mosaic mural most people walk right past.',
-    link: { href: '/tours', label: 'SEE ALL FOUR WALKS →' },
+    link: { href: '/tours/sip-and-nibble', label: 'SEE THE TOUR →' },
     photos: [
       { slug: 'river-walk', alt: 'Two walkers on the Napa River Walk beside the river under a blue sky', caption: 'The Napa River Walk, steps from the Napa River Inn.' },
       { slug: 'china-point', alt: 'Two people standing inside a large circular steel arch at China Point with the river behind them', caption: 'The circular arch at China Point, overlooking the river.' },
@@ -25,7 +25,6 @@ export const groups = [
     eyebrow: '02 · Old Napa, Still Standing',
     title: 'The buildings that survived',
     intro: 'Cornerstones, plaques, and facades that have outlasted a century and a couple of earthquakes.',
-    link: { href: '/tours/heritage-walk', label: 'ABOUT THE HERITAGE WALK →' },
     photos: [
       { slug: 'courthouse', alt: 'The historic Napa courthouse with JUSTICE carved above the entrance', caption: 'The historic Napa courthouse, "Justice" carved over the door.' },
       { slug: 'courthouse-grounds', alt: 'A large shade tree over a path on the courthouse grounds', caption: 'Shade on the courthouse grounds.' },
@@ -62,7 +61,6 @@ export const groups = [
     eyebrow: '04 · Coffee, Shops & Side Streets',
     title: 'The in-between is the good part',
     intro: 'Coffee counters, boutiques, alleys, and the odd surprise set into the sidewalk.',
-    link: { href: '/tours/boutique-row', label: 'ABOUT BOUTIQUE ROW →' },
     photos: [
       { slug: 'coffee-roasting-company', alt: 'Striped awning over the Napa Valley Coffee Roasting Company storefront', caption: 'Napa Valley Coffee Roasting Company.' },
       { slug: 'moulin-bakery', alt: 'People at patio tables outside Moulin coffee and bakery', caption: 'Patio tables at Moulin coffee and bakery.' },
